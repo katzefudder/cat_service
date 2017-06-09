@@ -1,0 +1,20 @@
+version: "2"
+services:
+    first:
+      build: .
+      environment:
+        - INSTANCE_NAME=cat_service_1
+      ports:
+        - "8080:80"
+    second:
+      build: .
+      environment:
+        - INSTANCE_NAME=cat_service_2
+      ports:
+        - "8081:80"
+    nginx:
+      build:
+        context: .
+        dockerfile: Dockerfile_nginx
+      ports:
+        - "80:80"
