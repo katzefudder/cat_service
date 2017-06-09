@@ -8,7 +8,7 @@
 <body>
 <div class="container-fluid">
 	<div class="jumbotron">
-		<h1>Docker Hands On (Apache...) <?php echo getenv('INSTANCE_NAME');?></h1>
+		<h1>Docker Hands On (LoadBalanced Apache) on <?php echo getenv('INSTANCE_NAME');?></h1>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
