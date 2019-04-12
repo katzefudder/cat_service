@@ -20,11 +20,15 @@ RUN unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip && \
     rm -rf /consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip && \
     mkdir -p /etc/consul-template/config.d/templates
 
+ADD config /etc/consul.d/loadbalancer
 
+# add nginx' host configuration
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 ADD ./http_request .
 ADD template /etc/consul-template/config.d/templates
 
-CMD ["nginx", "-g", "daemon off;"]
+ADD start.sh /
+
+ENTRYPOINT ["/start.sh"]
