@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	curl apache2 libapache2-mod-php php\
+	curl dnsutils apache2 libapache2-mod-php php\
 && apt-get clean
 
 RUN sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/" /etc/php/7.0/cli/php.ini
