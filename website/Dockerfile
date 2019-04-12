@@ -8,7 +8,7 @@ RUN sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/" /etc/p
 RUN sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/" /etc/php/7.0/apache2/php.ini
 
 RUN rm /var/www/html/index.html
-ADD website/ /var/www/html
+ADD . /var/www/html
 
 WORKDIR /var/www/html
 

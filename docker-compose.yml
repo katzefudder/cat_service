@@ -1,20 +1,82 @@
 version: "2"
 services:
+    consul1:
+      build:
+        context: ./consul
+      container_name: 'consul1'
+      command: 'agent -server -bootstrap-expect=3 -ui -client=0.0.0.0 -node=consul1 -log-level=debug'
+      ports:
+        - '8300:8300'
+        - '8301:8301'
+        - '8302:8302'
+        - '8400:8400'
+        - '8500:8500'
+        - '8600:53/udp'
+      container_name: 'consul1'
+      networks:
+        docker-consul:
+          ipv4_address: 172.16.238.10
+
+    consul2:
+      build:
+        context: ./consul
+      container_name: 'consul2'
+      command: 'agent -server -retry-join consul1 -node=consul2 -log-level=debug'
+      container_name: 'consul2'
+      depends_on:
+        - consul1
+      networks:
+        docker-consul:
+          ipv4_address: 172.16.238.11
+
+    consul3:
+      build:
+        context: ./consul
+      container_name: 'consul3'
+      command: 'agent -server -retry-join consul1 -node=consul3 -log-level=debug'
+      container_name: 'consul3'
+      depends_on:
+        - consul1
+      networks:
+        docker-consul:
+          ipv4_address: 172.16.238.12
     first:
-      build: .
+      build: ./website
+      container_name: 'first'
       environment:
         - INSTANCE_NAME=cat_service_1
       ports:
         - "8080:80"
+      depends_on:
+        - consul1
+      networks:
+        docker-consul:
+          ipv4_address: 172.16.238.13
     second:
-      build: .
+      build: ./website
+      container_name: 'second'
       environment:
         - INSTANCE_NAME=cat_service_2
       ports:
         - "8081:80"
-    nginx:
+      networks:
+        docker-consul:
+          ipv4_address: 172.16.238.14
+    loadbalancer:
       build:
-        context: .
-        dockerfile: Dockerfile_nginx
+        context: ./nginx
+      container_name: 'loadbalancer'
       ports:
         - "80:80"
+      networks:
+          docker-consul:
+            ipv4_address: 172.16.238.15
+
+networks:
+  docker-consul:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
