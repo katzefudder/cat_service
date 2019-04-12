@@ -7,11 +7,6 @@
       "timeout": "1s"
     },
     {
-      "id": "loadbalancer1",
-      "name": "Nginx Status",
-      "ttl": "30s"
-    },
-    {
       "name": "SSH TCP on port 80",
       "tcp": "172.16.238.13:80",
       "interval": "10s",
