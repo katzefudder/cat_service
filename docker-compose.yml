@@ -12,7 +12,6 @@ services:
         - '8400:8400'
         - '8500:8500'
         - '8600:53/udp'
-      container_name: 'consul1'
       networks:
         docker-consul:
           ipv4_address: 172.16.238.10
@@ -22,7 +21,6 @@ services:
         context: ./consul
       container_name: 'consul2'
       command: 'agent -server -retry-join consul1 -node=consul2 -log-level=debug'
-      container_name: 'consul2'
       depends_on:
         - consul1
       networks:
@@ -34,12 +32,12 @@ services:
         context: ./consul
       container_name: 'consul3'
       command: 'agent -server -retry-join consul1 -node=consul3 -log-level=debug'
-      container_name: 'consul3'
       depends_on:
         - consul1
       networks:
         docker-consul:
           ipv4_address: 172.16.238.12
+
     first:
       build: ./website
       container_name: 'first'
@@ -52,6 +50,7 @@ services:
       networks:
         docker-consul:
           ipv4_address: 172.16.238.13
+
     second:
       build: ./website
       container_name: 'second'
@@ -62,6 +61,7 @@ services:
       networks:
         docker-consul:
           ipv4_address: 172.16.238.14
+
     loadbalancer:
       build:
         context: ./nginx
