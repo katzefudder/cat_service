@@ -7,7 +7,7 @@
       "timeout": "1s"
     },
     {
-      "name": "SSH TCP on port 80",
+      "name": "TCP connect on port 80",
       "tcp": "172.16.238.13:80",
       "interval": "10s",
       "timeout": "1s"
