@@ -1,0 +1,12 @@
+{
+  "node_name": "loadbalancer",
+  "data_dir": "/opt/consul",
+  "log_level": "INFO",
+  "datacenter": "cat-service",
+  "enable_debug": true,
+  "retry_join": [
+    "consul1",
+    "consul2",
+    "consul3"
+  ]
+}

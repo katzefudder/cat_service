@@ -1,0 +1,13 @@
+{
+  "service": {
+    "name": "webserver",
+    "tags": ["apache"],
+    "port": 80,
+    "checks": [
+      {
+        "args": ["/usr/sbin/service", "apache2", "status"],
+        "interval": "5s"
+      }
+    ]
+  }
+}

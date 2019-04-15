@@ -1,0 +1,14 @@
+{
+  "service": {
+    "name": "loadbalancer1",
+    "tags": ["nginx"],
+    "address": "172.16.238.15",
+    "port": 80,
+    "checks": [
+      {
+        "args": ["/usr/sbin/service", "nginx", "status"],
+        "interval": "5s"
+      }
+    ]
+  }
+}
