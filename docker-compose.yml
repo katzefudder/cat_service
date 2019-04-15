@@ -4,6 +4,8 @@ services:
       build:
         context: ./consul
       container_name: 'consul1'
+      environment:
+      - 'CONSUL_LOCAL_CONFIG={"datacenter":"cat-service"}'
       command: 'agent -server -bootstrap-expect=3 -ui -client=0.0.0.0 -node=consul1 -log-level=debug'
       ports:
         - '8300:8300'
@@ -13,64 +15,48 @@ services:
         - '8500:8500'
         - '8600:53/udp'
       networks:
-        docker-consul:
-          ipv4_address: 172.16.238.10
+        - docker-consul
 
     consul2:
       build:
         context: ./consul
       container_name: 'consul2'
+      environment:
+      - 'CONSUL_LOCAL_CONFIG={"datacenter":"cat-service"}'
       command: 'agent -server -retry-join consul1 -node=consul2 -log-level=debug'
       depends_on:
         - consul1
       networks:
-        docker-consul:
-          ipv4_address: 172.16.238.11
+        - docker-consul
 
     consul3:
       build:
         context: ./consul
       container_name: 'consul3'
+      environment:
+      - 'CONSUL_LOCAL_CONFIG={"datacenter":"cat-service"}'
       command: 'agent -server -retry-join consul1 -node=consul3 -log-level=debug'
       depends_on:
         - consul1
       networks:
-        docker-consul:
-          ipv4_address: 172.16.238.12
+        - docker-consul
 
-    first:
-      build: ./website
-      container_name: 'first'
-      environment:
-        - INSTANCE_NAME=cat_service_1
+    webserver:
+      build: ./webserver
       ports:
-        - "8080:80"
+        - "80"
       depends_on:
         - consul1
       networks:
-        docker-consul:
-          ipv4_address: 172.16.238.13
-
-    second:
-      build: ./website
-      container_name: 'second'
-      environment:
-        - INSTANCE_NAME=cat_service_2
-      ports:
-        - "8081:80"
-      networks:
-        docker-consul:
-          ipv4_address: 172.16.238.14
+        - docker-consul
 
     loadbalancer:
       build:
-        context: ./nginx
-      container_name: 'loadbalancer'
+        context: ./loadbalancer
       ports:
         - "80:80"
       networks:
-          docker-consul:
-            ipv4_address: 172.16.238.15
+        - docker-consul
 
 networks:
   docker-consul:

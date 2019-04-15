@@ -1,0 +1,10 @@
+{
+  "checks": [
+    {
+      "name": "Apache on port 80",
+      "http": "http://localhost:80",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+  ]
+}

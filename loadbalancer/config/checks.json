@@ -5,12 +5,6 @@
       "http": "http://localhost:80",
       "interval": "10s",
       "timeout": "1s"
-    },
-    {
-      "name": "TCP connect on port 80",
-      "tcp": "172.16.238.13:80",
-      "interval": "10s",
-      "timeout": "1s"
     }
   ]
 }

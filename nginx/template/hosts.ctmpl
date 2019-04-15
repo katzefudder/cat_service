@@ -1,4 +1,0 @@
-{{ range nodes }}
-# {{.Node}}
-{{ .Address }} {{.Node}}
-{{ end }}

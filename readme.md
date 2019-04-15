@@ -1,7 +1,12 @@
 
-Add the loadbalancer to Consul
+Start the containers by stating:
 
-`docker cp consul/config/loadbalancer loadbalancer:/etc/consul.d`
-`docker exec -d -t loadbalancer consul agent -config-file=/etc/consul.d/loadbalancer`
-`docker exec -d -t loadbalancer bash -c './http_request loadbalancer'`
+``
+docker-compose up -d --build
+``
 
+Scale webservers by stating:
+
+``
+docker-compose scale webserver=2
+``

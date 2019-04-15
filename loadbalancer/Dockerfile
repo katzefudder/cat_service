@@ -24,9 +24,8 @@ ADD config /etc/consul.d/loadbalancer
 
 # add nginx' host configuration
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-ADD template /etc/consul-template/config.d/templates
+ADD nginx.conf /etc/consul-templates/nginx.conf
 
 ADD start.sh /
 
