@@ -55,6 +55,8 @@ services:
         context: ./loadbalancer
       ports:
         - "80:80"
+      depends_on:
+        - consul1
       networks:
         - docker-consul
 
