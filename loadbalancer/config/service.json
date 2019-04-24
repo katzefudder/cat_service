@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "loadbalancer1",
+    "name": "loadbalancer",
     "tags": ["nginx"],
     "address": "172.16.238.15",
     "port": 80,
