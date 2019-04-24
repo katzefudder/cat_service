@@ -27,6 +27,8 @@ RUN sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/" /etc/p
 RUN rm /var/www/html/index.html
 
 ADD index.php /etc/consul-templates/index.php
+ADD img /var/www/html/img
+ADD css /var/www/html/css
 
 WORKDIR /var/www/html
 
