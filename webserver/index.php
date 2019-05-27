@@ -9,6 +9,7 @@
 <div class="container-fluid">
 	<div class="jumbotron">
 		<h1><?php echo $_SERVER['SERVER_ADDR']; ?></h1>
+		<h2>Nodes available: {{range service "webserver"}}<p>{{ .Address }}</p>{{ end }}</h2>
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
