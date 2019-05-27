@@ -1,4 +1,4 @@
-version: "2"
+version: "2.2"
 services:
     consul1:
       build:
@@ -43,6 +43,7 @@ services:
 
     webserver:
       build: ./webserver
+      scale: 3
       ports:
         - "80"
       depends_on:
