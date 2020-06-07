@@ -2,7 +2,7 @@
   "data_dir": "/opt/consul",
   "log_level": "INFO",
   "datacenter": "cat-service",
-  "enable_debug": true,
+  "enable_debug": false,
   "retry_join": [
     "consul1",
     "consul2",
