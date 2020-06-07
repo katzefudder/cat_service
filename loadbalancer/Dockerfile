@@ -1,17 +1,20 @@
-FROM nginx
+FROM openresty/openresty:1.15.8.2-1-xenial
 
-ENV CONSUL_VERSION 1.4.4
-ENV CONSUL_TEMPLATE_VERSION 0.20.0
+ENV PATH=$PATH:/usr/local/openresty/luajit/bin:/usr/local/openresty/nginx/sbin:/usr/local/openresty/bin
+
+ENV CONSUL_VERSION 1.6.5
+ENV CONSUL_TEMPLATE_VERSION 0.25.0
 
 RUN mkdir -p /etc/consul.d
 
 RUN apt-get -qq update \
-    && apt-get -y install dnsutils procps curl unzip ca-certificates \
+    && apt-get -y install dnsutils procps curl iputils-ping net-tools unzip python-pip ca-certificates \
     && curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip -o /tmp/consul.zip \
     && cd /bin \
     && unzip /tmp/consul.zip \
     && chmod +x /bin/consul \
-    && rm /tmp/consul.zip
+    && rm /tmp/consul.zip \
+    && pip install virtualenv
 
 ADD https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip /
 
@@ -23,10 +26,7 @@ RUN unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip && \
 ADD config /etc/consul.d/loadbalancer
 
 # add nginx' host configuration
-RUN rm /etc/nginx/conf.d/default.conf
-
-ADD nginx.conf /etc/nginx/nginx.conf
-ADD nginx_proxy.conf /etc/consul-templates/nginx.conf
+RUN rm /etc/nginx/conf.d/default.conf && mkdir -p /var/log/nginx
 
 ADD start.sh /
 

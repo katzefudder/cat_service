@@ -1,6 +1,6 @@
-FROM consul:latest
+FROM consul:1.6.5
 
-ENV CONSUL_TEMPLATE_VERSION 0.20.0
+ENV CONSUL_TEMPLATE_VERSION 0.25.0
 
 ADD https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip /
 

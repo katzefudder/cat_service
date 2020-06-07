@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 service apache2 start
+apache_exporter &
 
 consul agent -config-file=/etc/consul.d/webserver -enable-local-script-checks &
 consul-template \
