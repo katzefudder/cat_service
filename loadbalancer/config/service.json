@@ -6,7 +6,7 @@
     "port": 80,
     "checks": [
       {
-        "args": ["/usr/sbin/service", "nginx", "status"],
+        "args": ["/usr/local/openresty/bin/openresty", "-t"],
         "interval": "5s"
       }
     ]
