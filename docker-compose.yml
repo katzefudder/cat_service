@@ -73,10 +73,24 @@ services:
       image: prom/prometheus
       volumes:
         - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+        - "./prometheus/alerts.yml:/etc/prometheus/alerts.yml"
       ports:
         - "9090:9090"
       depends_on:
         - loadbalancer
+      networks:
+        - docker-consul
+
+    alertmanager:
+      image: prom/alertmanager:v0.12.0
+      ports:
+        - 9093:9093
+      volumes:
+        - ./alertmanager/:/etc/alertmanager/
+      restart: always
+      command:
+        - '-config.file=/etc/alertmanager/alertmanager.yml'
+        - '-storage.path=/alertmanager'
       networks:
         - docker-consul
 
