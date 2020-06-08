@@ -4,7 +4,7 @@ groups:
 
   - alert: Node down
     expr: up{job="webserver"} == 0
-    for: 30s
+    for: 3m
     labels:
       severity: warning
     annotations:
