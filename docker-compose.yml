@@ -66,6 +66,7 @@ services:
         - ./loadbalancer/start.sh:/start.sh
       depends_on:
         - consul1
+      cpu_count: 2
       networks:
         - docker-consul
 
@@ -81,10 +82,23 @@ services:
       networks:
         - docker-consul
 
+    grafana:
+      image: grafana/grafana:7.0.3
+      ports:
+        - "3000:3000"
+      depends_on:
+        - loadbalancer
+      networks:
+        - docker-consul
+      volumes:
+       - ./grafana:/var/lib/grafana
+
     alertmanager:
       image: prom/alertmanager:v0.12.0
       ports:
         - 9093:9093
+      depends_on:
+        - loadbalancer
       volumes:
         - ./alertmanager/:/etc/alertmanager/
       restart: always
