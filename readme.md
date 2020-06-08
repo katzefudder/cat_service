@@ -1,6 +1,6 @@
 # Load Balancing with openresty and Consul Template, monitoring with Prometheus
  
-![Architecture Schema](./arch-schema.jpg)
+![Architecture Schema](architecture-schema.jpg)
 
 * Registering each Apache instance within Consul
 * update openresty's upstream using Consul Template and reload openresty in case changes happen to the array of webservers
