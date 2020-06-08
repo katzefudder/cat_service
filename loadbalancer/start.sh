@@ -4,8 +4,9 @@ consul agent -config-file=/etc/consul.d/loadbalancer -enable-local-script-checks
 
 sleep 5
 
-consul kv put limit_conn "3"
-consul kv put limit_rate "20k"
+consul kv put openresty/limit_conn "3"
+consul kv put openresty/limit_rate "20k"
+consul kv put openresty/proxy_read_timeout "10s"
 
 consul-template \
     -consul-addr consul1:8500 \
