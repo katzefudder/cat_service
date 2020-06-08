@@ -108,6 +108,14 @@ services:
       networks:
         - docker-consul
 
+    mailhog:
+      image: mailhog/mailhog
+      ports:
+        - 1025:1025
+        - 8025:8025
+      networks:
+        - docker-consul
+
 networks:
   docker-consul:
     driver: bridge
