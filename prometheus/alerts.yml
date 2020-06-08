@@ -2,38 +2,11 @@ groups:
 - name: Cat Service
   rules:
 
-  - alert: service_down
-    expr: up == 0
+  - alert: Node down
+    expr: up{job="webserver"} == 0
     for: 30s
     labels:
-      severity: page
+      severity: warning
     annotations:
-      summary: "Instance {{ $labels.instance }} down"
-      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 seconds."
-
-  - alert: service_down
-    expr: up < 3
-    for: 30s
-    labels:
-      severity: page
-    annotations:
-      summary: "At least one instance is down"
-      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 30 seconds."
-
-  - alert: high_load
-    expr: node_load1 > 0.8
-    for: 30s
-    labels:
-      severity: page
-    annotations:
-      summary: "Instance {{ $labels.instance }} under high load"
-      description: "{{ $labels.instance }} of job {{ $labels.job }} is under high load."
-
-  - alert: site_down
-    expr: probe_success < 1
-    for: 30s
-    labels:
-      severity: page
-    annotations:
-      summary: "Site Down: {{$labels.instance}}"
-      description: "Site Down: {{$labels.instance}} for more than 30 seconds"
+      summary: "Node {{ $labels.instance }} is down"
+      description: "Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 3 minutes. Node seems down."
