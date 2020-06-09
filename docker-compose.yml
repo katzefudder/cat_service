@@ -83,7 +83,8 @@ services:
         - docker-consul
 
     grafana:
-      image: grafana/grafana:7.0.3
+      build:
+        context: ./grafana
       ports:
         - "3000:3000"
       depends_on:

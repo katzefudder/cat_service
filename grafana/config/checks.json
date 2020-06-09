@@ -1,0 +1,10 @@
+{
+  "checks": [
+    {
+      "name": "HTTP Grafana on port 3000",
+      "http": "http://localhost:3000",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+  ]
+}
