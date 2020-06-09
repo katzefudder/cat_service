@@ -28,6 +28,6 @@ see consul web ui:
 
 [Alertmanager](http://localhost:9093)
 
-[Grafana](http://localhost:3000)
+[Grafana](http://localhost:3000) user:password is admin:admin
 
 [Mailhog](http://localhost:8025)
