@@ -24,6 +24,11 @@ RUN cd /tmp && wget https://github.com/Lusitaniae/apache_exporter/releases/downl
     tar -zxvf apache_exporter-0.5.0.linux-amd64.tar.gz && \
     install apache_exporter-0.5.0.linux-amd64/apache_exporter /usr/local/bin/
 
+# install linux prometheus exporter
+RUN cd /tmp && wget https://github.com/prometheus/node_exporter/releases/download/v1.0.0/node_exporter-1.0.0.linux-amd64.tar.gz && \
+    tar -zxvf node_exporter-1.0.0.linux-amd64.tar.gz && \
+    install node_exporter-1.0.0.linux-amd64/node_exporter /usr/local/bin/
+
 ADD config /etc/consul.d/webserver
 
 RUN sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/" /etc/php/7.0/cli/php.ini

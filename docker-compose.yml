@@ -46,6 +46,7 @@ services:
       scale: 3
       ports:
         - "80"
+        - "9100"
       depends_on:
         - loadbalancer
       networks:
@@ -57,16 +58,15 @@ services:
       ports:
         - "80:80"
         - "9145:9145"
+        - "9100"
       volumes:
-        - ./loadbalancer/nginx-lua-prometheus/prometheus.lua:/usr/local/openresty/lualib/prometheus.lua
-        - ./loadbalancer/config.json:/config.json
-        - ./loadbalancer/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
-        - ./loadbalancer/nginx_proxy.conf:/etc/consul-template/config.d/templates/nginx.conf
-        - ./loadbalancer/prometheus.conf:/etc/nginx/conf.d/prometheus.conf
-        - ./loadbalancer/start.sh:/start.sh
+        - "./loadbalancer/nginx-lua-prometheus/prometheus.lua:/usr/local/openresty/lualib/prometheus.lua"
+        - "./loadbalancer/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
+        - "./loadbalancer/nginx_proxy.conf:/etc/consul-template/config.d/templates/nginx.conf"
+        - "./loadbalancer/prometheus.conf:/etc/nginx/conf.d/prometheus.conf"
+        - "./loadbalancer/start.sh:/start.sh"
       depends_on:
         - consul1
-      cpu_count: 2
       networks:
         - docker-consul
 
@@ -96,7 +96,7 @@ services:
     alertmanager:
       image: prom/alertmanager:v0.12.0
       ports:
-        - 9093:9093
+        - "9093:9093"
       depends_on:
         - loadbalancer
       volumes:
@@ -111,8 +111,10 @@ services:
     mailhog:
       image: mailhog/mailhog
       ports:
-        - 1025:1025
-        - 8025:8025
+        - "1025:1025"
+        - "8025:8025"
+      depends_on:
+              - loadbalancer
       networks:
         - docker-consul
 

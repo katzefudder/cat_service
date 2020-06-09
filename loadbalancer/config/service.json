@@ -1,8 +1,7 @@
 {
   "service": {
     "name": "loadbalancer",
-    "tags": ["nginx"],
-    "address": "172.16.238.15",
+    "tags": ["nginx, loadbalancer, openresty"],
     "port": 80,
     "checks": [
       {

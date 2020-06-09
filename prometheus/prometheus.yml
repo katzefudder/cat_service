@@ -28,7 +28,11 @@ scrape_configs:
     static_configs:
     - targets: ['loadbalancer:9145']
 
-  - job_name: webserver
+  - job_name: loadbalancer-instance-metrics
+    static_configs:
+    - targets: ['loadbalancer:9100']
+
+  - job_name: webserver-apache-metrics
     consul_sd_configs:
       - server: 'consul1:8500'
     relabel_configs:
@@ -37,7 +41,25 @@ scrape_configs:
         action: keep
       - source_labels: [__meta_consul_service]
         target_label: job
+      - source_labels: [__meta_consul_address]
+        target_label: instance
       - source_labels: ['__address__']
         regex: '(.*):.*'
         replacement: '$1:9117'
+        target_label: '__address__'
+
+  - job_name: webserver-instance-metrics
+    consul_sd_configs:
+      - server: 'consul1:8500'
+    relabel_configs:
+      - source_labels: [__meta_consul_tags]
+        regex: .*,apache,.*
+        action: keep
+      - source_labels: [__meta_consul_service]
+        target_label: job
+      - source_labels: [__meta_consul_address]
+        target_label: instance
+      - source_labels: ['__address__']
+        regex: '(.*):.*'
+        replacement: '$1:9100'
         target_label: '__address__'

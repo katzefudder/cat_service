@@ -1,7 +1,7 @@
 {
   "service": {
     "name": "webserver",
-    "tags": ["apache"],
+    "tags": ["apache, webserver"],
     "port": 80,
     "checks": [
       {

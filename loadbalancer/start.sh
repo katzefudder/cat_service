@@ -2,6 +2,8 @@
 
 consul agent -config-file=/etc/consul.d/loadbalancer -enable-local-script-checks &
 
+node_exporter &
+
 sleep 5
 
 consul kv put openresty/limit_conn "3"
