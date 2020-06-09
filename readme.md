@@ -29,3 +29,5 @@ see consul web ui:
 [Alertmanager](http://localhost:9093)
 
 [Grafana](http://localhost:3000)
+
+[Mailhog](http://localhost:8025)
