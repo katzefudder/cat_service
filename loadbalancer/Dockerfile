@@ -30,6 +30,9 @@ RUN cd /tmp && wget https://github.com/prometheus/node_exporter/releases/downloa
 
 ADD config /etc/consul.d/loadbalancer
 
+# add prometheus lua library for monitoring
+ADD lua/ /etc/nginx/lua
+
 # add nginx' host configuration
 RUN rm /etc/nginx/conf.d/default.conf && mkdir -p /var/log/nginx
 

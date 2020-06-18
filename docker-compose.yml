@@ -60,7 +60,6 @@ services:
         - "9145:9145"
         - "9100"
       volumes:
-        - "./loadbalancer/nginx-lua-prometheus/prometheus.lua:/usr/local/openresty/lualib/prometheus.lua"
         - "./loadbalancer/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
         - "./loadbalancer/nginx_proxy.conf:/etc/consul-template/config.d/templates/nginx.conf"
         - "./loadbalancer/prometheus.conf:/etc/nginx/conf.d/prometheus.conf"
