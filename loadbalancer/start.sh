@@ -6,8 +6,8 @@ node_exporter &
 
 sleep 5
 
-consul kv put openresty/limit_conn "3"
-consul kv put openresty/limit_rate "20k"
+consul kv put openresty/limit_conn "20"
+consul kv put openresty/limit_rate "100k"
 consul kv put openresty/proxy_read_timeout "10s"
 
 consul-template \
