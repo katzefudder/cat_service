@@ -65,6 +65,7 @@ services:
         - "./loadbalancer/nginx_proxy.conf:/etc/consul-template/config.d/templates/nginx.conf"
         - "./loadbalancer/prometheus.conf:/etc/nginx/conf.d/prometheus.conf"
         - "./loadbalancer/start.sh:/start.sh"
+        - "/data/nginx/cache"
       depends_on:
         - consul1
       networks:
