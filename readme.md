@@ -1,4 +1,8 @@
 # Load Balancing with openresty and Consul Template, monitoring with Prometheus
+
+Run a set of load balanced Apache Web Servers to serve a simple web page.
+The service is monitored using Prometheus and Alertmanager, graphing via Grafana.
+Users might change some settings via Consul Template on the loadbalancing nginx proxy in front of the webservers.
  
 ![Architecture Schema](architecture-schema.jpg)
 
