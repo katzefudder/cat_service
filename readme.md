@@ -20,6 +20,22 @@ docker-compose up -d --build
 ``
 
 ## Available Services
+
+| Component                     | Description                                                               | URL                           |
+| -----------------------       | ------------------------------------------------------                    | ----------------------------- |
+| consul-1                      | Consul                                                                    | <http://localhost:8500/>      |
+| consul-2                      | Consul                                                                    | not available to the outside  |
+| consul-3                      | Consul                                                                    | not available to the outside  |
+| loadbalancer                  | Openresty                                                                 | <http://localhost:80/>        |
+| webserver-1                   | Apache                                                                    | not available to the outside  |
+| webserver-2                   | Apache                                                                    | not available to the outside  |
+| webserver-3                   | Apache                                                                    | not available to the outside  |
+| grafana                       | Grafana                                                                   | <http://localhost:3000/>      |
+| prometheus                    | Prometheus                                                                | <http://localhost:9090/>      |
+| alertmanager                  | Alertmanager                                                              | <http://localhost:9093/>      |
+| mailhog                       | Mailhog                                                                   | <http://localhost:8025/>      |
+| node-exporter                 | Node Exporter                                                             | <http://localhost:9100/>      |
+
 see consul web ui:
 
 [Consul Services](http://localhost:8500/ui/cat-service/services)
@@ -27,8 +43,6 @@ see consul web ui:
 [Loadbalanced Website](http://localhost)
 
 [openresty's metrics endpoint](http://localhost:9145/metrics)
-
-[Prometheus](http://localhost:9090)
 
 [Alertmanager](http://localhost:9093)
 
