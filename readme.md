@@ -35,17 +35,3 @@ docker-compose up -d --build
 | alertmanager                  | Alertmanager                                                              | <http://localhost:9093/>      |
 | mailhog                       | Mailhog                                                                   | <http://localhost:8025/>      |
 | node-exporter                 | Node Exporter                                                             | <http://localhost:9100/>      |
-
-see consul web ui:
-
-[Consul Services](http://localhost:8500/ui/cat-service/services)
-
-[Loadbalanced Website](http://localhost)
-
-[openresty's metrics endpoint](http://localhost:9145/metrics)
-
-[Alertmanager](http://localhost:9093)
-
-[Grafana](http://localhost:3000) user:password is admin:admin
-
-[Mailhog](http://localhost:8025)
