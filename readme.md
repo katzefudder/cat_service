@@ -1,4 +1,4 @@
-# Load Balancing with openresty and Consul Template, monitoring with Prometheus
+# Load Balancing with openresty and Consul for service discovery & monitoring using Prometheus
 
 Run a set of load balanced Apache Web Servers to serve a simple web page.
 The service is monitored using Prometheus and Alertmanager, graphing via Grafana.
@@ -14,10 +14,10 @@ Users might change some settings via Consul Template on the loadbalancing nginx 
 * alerting using Prometheus' Alertmanager
 
 
-## Start the containers by stating:
+## Running the example
 
 ``
-docker-compose up -d --build
+docker-compose up -d
 ``
 
 ## Available Services
@@ -36,3 +36,12 @@ docker-compose up -d --build
 | alertmanager                  | Alertmanager                                                              | <http://localhost:9093/>      |
 | mailhog                       | Mailhog                                                                   | <http://localhost:8025/>      |
 | node-exporter                 | Node Exporter                                                             | <http://localhost:9100/>      |
+
+## Credentials
+
+Grafana:
+
+```bash
+username - admin
+password - admin
+```
