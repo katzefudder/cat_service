@@ -44,9 +44,6 @@ services:
     webserver:
       build: ./webserver
       scale: 3
-      ports:
-        - "80"
-        - "9100"
       depends_on:
         - loadbalancer
       networks:
