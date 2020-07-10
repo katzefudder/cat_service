@@ -33,6 +33,13 @@ docker-compose up -d
 | webserver-3                   | Apache                                                                    | not available to the outside  |
 | grafana                       | Grafana                                                                   | <http://localhost:3000/>      |
 | prometheus                    | Prometheus                                                                | <http://localhost:9090/>      |
+| thanos-querier                | Thanos Querier                                                            | <http://localhost:10902/>     |
+| thanos-ruler                  | Thanos Ruler                                                              | <http://localhost:10903/>     |
+| thanos-bucket-web             | Thanos Bucket Viewer                                                      | <http://localhost:10904/>     |
+| thanos-compactor              | Thanos Compactor                                                          | not available to the outside  |
+| thanos-sidecar                | Thanos Sidecar                                                            | not available to the outside  |
+| thanos-store-gateway          | Thanos Store Gateway                                                      | not available to the outside  |
+| minio                         | Minio                                                                     | <http://localhost:9000/>      |
 | alertmanager                  | Alertmanager                                                              | <http://localhost:9093/>      |
 | mailhog                       | Mailhog                                                                   | <http://localhost:8025/>      |
 | node-exporter                 | Node Exporter                                                             | <http://localhost:9100/>      |
