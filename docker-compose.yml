@@ -88,6 +88,8 @@ services:
         - loadbalancer
       networks:
         - docker-consul
+      env_file:
+        - ./grafana/config.monitoring
       volumes:
        - ./grafana:/var/lib/grafana
 
