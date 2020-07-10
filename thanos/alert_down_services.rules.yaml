@@ -1,24 +1,12 @@
 groups:
-  - name: metamonitoring
-    rules:
-      - alert: PrometheusReplicaDown
-        annotations:
-          message: 'Prometheus replica in cluster {{$labels.cluster}}
+- name: Cat Service Webservers
+  rules:
 
-            has disappeared from Prometheus target discovery.'
-        expr: |
-          label_replace(
-            absent(sum(up{job="prometheus",
-            cluster="chicago",
-            instance=~".*:9090"}) by (job, cluster) == 2),
-            "cluster", "chicago", "",""
-          )
-          or
-          label_replace(
-            absent(sum(up{job="prometheus",
-            cluster="seattle", instance=~".*:9090"}) by (job, cluster) == 2),
-            "cluster", "seattle", "",""
-          )
-        for: 15s  # for demo purposes
-        labels:
-          severity: critical
+  - alert: Node down
+    expr: up{job="webserver"} == 0
+    for: 15s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Node {{ $labels.instance }} is down"
+      description: "Failed to scrape {{ $labels.job }} on {{ $labels.instance }} for more than 15 seconds. Node seems down."
