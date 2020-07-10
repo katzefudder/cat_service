@@ -9,8 +9,9 @@ Users might change some settings via Consul Template on the loadbalancing nginx 
 * Registering each Apache instance within Consul
 * update openresty's upstream using Consul Template and reload openresty in case changes happen to the array of webservers
 * monitor all available services using Prometheus
+* Prometheus uses Consul's service discovery to discover available webservers to monitor
 * visualize all metrics with Grafana
-* alerting with Prometheus' Alertmanager
+* alerting using Prometheus' Alertmanager
 
 
 ## Start the containers by stating:
