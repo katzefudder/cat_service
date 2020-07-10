@@ -85,7 +85,7 @@ services:
       ports:
         - "3000:3000"
       depends_on:
-        - loadbalancer
+        - prometheus
       networks:
         - docker-consul
       env_file:
@@ -98,7 +98,7 @@ services:
       ports:
         - "9093:9093"
       depends_on:
-        - loadbalancer
+        - prometheus
       volumes:
         - ./alertmanager/:/etc/alertmanager/
       restart: always
@@ -114,7 +114,7 @@ services:
         - "1025:1025"
         - "8025:8025"
       depends_on:
-              - loadbalancer
+              - alertmanager
       networks:
         - docker-consul
 
